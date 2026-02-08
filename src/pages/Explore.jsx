@@ -6,6 +6,7 @@ const Explore = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  //Does this works
 
   return (
     <div id="wrapper">
