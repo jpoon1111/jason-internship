@@ -28,8 +28,8 @@ const options = {
       1200: { items: 4, nav: true }
     },
     navText: [
-      '<i className="fa fa-chevron-left"></i>',
-      '<i className="fa fa-chevron-right"></i>'
+      '<i class="fa fa-chevron-left"></i>',
+      '<i class="fa fa-chevron-right"></i>'
     ]
   };
   
