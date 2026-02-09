@@ -14,6 +14,7 @@ if (typeof window !== 'undefined') {
 
 const HotCollections = () => {
   const [nfts, setNfts] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
 const options = {
     items: 4,
@@ -34,6 +35,7 @@ const options = {
   };
   
   async function fetchData() {
+      setIsLoading(true);
       const fetchHotCollections = "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
       try{
         const {data} = await axios.get(fetchHotCollections);
@@ -42,6 +44,8 @@ const options = {
       }
       catch(error){
         console.log('Error fetching', error);
+      }finally{
+        setIsLoading(false);
       }
       
   }
@@ -68,7 +72,34 @@ const options = {
             </div>
           </div>
 
-          <OwlCarousel className='owl-theme' {...options}>
+          {isLoading ?  (<OwlCarousel className='owl-theme' {...options}>
+              {[...Array(6)].map((_, index) => (
+                <div className='item' key={index}>
+                  <div className="nft_coll">
+                    <div className="nft_wrap">
+                      <a href="/">
+                        <div className="skeleton-box" style={{width: "100%", height: "200px"}}></div>
+                      </a>
+                    </div>
+                    <div className="nft_coll_pp">
+                      <a href="/">
+                        <div className="skeleton-box" style={{width: "50px", height: "50px", borderRadius: "50%"}}></div>
+                      </a>
+                      <i className="fa fa-check"></i>
+                    </div>
+                    <div className="nft_coll_info">
+                      <a href="/">
+                        <div className="skeleton-box" style={{width: "100px", height: "20px"}}></div>
+                      </a>
+                      <br />
+                      <div className="skeleton-box" style={{width: "60px", height: "20px"}}></div>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </OwlCarousel>
+          ):
+            (<OwlCarousel className='owl-theme' {...options}>
             {nfts.map((nft, index) => (
               <div className='item' key={index}>
                 <div className="nft_coll">
@@ -92,8 +123,10 @@ const options = {
                 </div>
               </div>
             ))}
-          </OwlCarousel>
+          </OwlCarousel>)
+        }
 
+          
         </div>
       </div>
     </section>
