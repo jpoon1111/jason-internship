@@ -39,7 +39,6 @@ const options = {
       const fetchHotCollections = "https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections"
       try{
         const {data} = await axios.get(fetchHotCollections);
-        console.log(data);
         setNfts(data);
       }
       catch(error){
@@ -72,7 +71,9 @@ const options = {
             </div>
           </div>
 
-          {isLoading ?  (<OwlCarousel className='owl-theme' {...options}>
+          {isLoading ?  (
+            // using   key={isLoading ? "loading" : "loaded"} will treat it as a component and will re-render
+            <OwlCarousel className='owl-theme' {...options}   key={isLoading ? "loading" : "loaded"}>
               {[...Array(6)].map((_, index) => (
                 <div className='item' key={index}>
                   <div className="nft_coll">
@@ -99,7 +100,9 @@ const options = {
               ))}
             </OwlCarousel>
           ):
-            (<OwlCarousel className='owl-theme' {...options}>
+          // using   key={isLoading ? "loading" : "loaded"} will treat it as a component and will re-render
+            (<OwlCarousel className='owl-theme' {...options}  key={isLoading ? "loading" : "loaded"}>
+            
             {nfts.map((nft, index) => (
               <div className='item' key={index}>
                 <div className="nft_coll">
@@ -123,6 +126,7 @@ const options = {
                 </div>
               </div>
             ))}
+
           </OwlCarousel>)
         }
 
