@@ -42,7 +42,6 @@ const NewItems = () => {
           try{
             const {data} = await axios.get(fetchNewItems);
             setItems(data);
-            console.log(data);
           }
           catch(error){
             console.log('Error fetching', error);
