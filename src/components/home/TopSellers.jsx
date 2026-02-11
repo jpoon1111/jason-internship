@@ -99,6 +99,7 @@ const TopSellers = () => {
                     </div>
                   </li>
                 ))
+                
               ) : (
                 sellers.map((seller, index) => (
                   <li key={index}>
