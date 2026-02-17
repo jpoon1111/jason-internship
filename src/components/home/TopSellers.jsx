@@ -7,7 +7,6 @@ import OwlCarousel from 'react-owl-carousel';
 import '../../css/styles/owl.carousel.css';
 import '../../css/styles/owl.theme.css';
 import '../../css/styles/owl.transitions.css';
-import AuthorImage from "../../images/author_thumbnail.jpg";
 
 if (typeof window !== 'undefined') {
   if (!window.$) window.$ = $;
@@ -102,7 +101,7 @@ const TopSellers = () => {
                 
               ) : (
                 sellers.map((seller, index) => (
-                  <li key={index}>
+                  <li key={seller.authorId}>
                     <div className="author_list_pp">
                       <Link to={`/author/${seller.authorId}`}>
                         <img

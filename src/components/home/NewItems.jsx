@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useRef } from "react";
 import { Link } from "react-router-dom";
+import Countdown from "../UI/Countdown";
 import axios from "axios";
 import $ from 'jquery';
 import jQuery from 'jquery';
@@ -11,6 +12,7 @@ if (typeof window !== 'undefined') {
   if (!window.$) window.$ = $;
   if (!window.jQuery) window.jQuery = jQuery;
 }
+//comment
 
 const NewItems = () => {
     const [items, setItems] = useState([]);
@@ -167,7 +169,7 @@ const NewItems = () => {
 
                     {items.map((item, index) => (
                       
-                        <div className="nft__item" key={index}>
+                        <div className="nft__item" key={item.authorId}>
                           <div className="author_list_pp">
                             <Link
                               to="/author"
@@ -179,7 +181,7 @@ const NewItems = () => {
                               <i className="fa fa-check"></i>
                             </Link>
                           </div>
-                          <div className="de_countdown">{countdowns[index] || "Expired"}</div>
+                          <Countdown expiryDate={item.expiryDate}/>
 
                           <div className="nft__item_wrap">
                             <div className="nft__item_extra">

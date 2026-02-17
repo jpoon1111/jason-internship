@@ -104,7 +104,7 @@ const options = {
             (<OwlCarousel className='owl-theme' {...options}  key={isLoading ? "loading" : "loaded"}>
             
             {nfts.map((nft, index) => (
-              <div className='item' key={index}>
+              <div className='item' key={nft.authorId}>
                 <div className="nft_coll">
                   <div className="nft_wrap">
                     <Link to="/item-details">
