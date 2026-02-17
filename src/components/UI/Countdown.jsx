@@ -17,8 +17,11 @@ const Countdown = ({expiryDate}) => {
     // If time has expired or no date provided, return zeros
     if (difference <= 0) return "Expired";
 
+
+    
     // Convert milliseconds to hours (1000ms * 60s * 60min)
     const hours = Math.floor(difference / (oneSecond * oneMinute * oneHour));
+
 
     // Get remaining milliseconds after removing hours, then convert to minutes
     const minutes = Math.floor((difference % (oneSecond * oneMinute * oneHour)) / (oneSecond * oneMinute));

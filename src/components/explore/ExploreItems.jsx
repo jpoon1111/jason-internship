@@ -79,6 +79,8 @@ const ExploreItems = ({nfts, loading}) => {
                 <i className="fa fa-check"></i>
               </Link>
             </div>
+
+
             <Countdown expiryDate={nft.expiryDate}/>
 
             <div className="nft__item_wrap">
