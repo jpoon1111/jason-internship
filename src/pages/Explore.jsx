@@ -28,7 +28,7 @@ const Explore = () => {
       setIsLoading(false);
     }
   }
-
+//comment
 //  async function fetchData() {
 //           setIsLoading(true);
 //           const fetchTopSellers = "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"

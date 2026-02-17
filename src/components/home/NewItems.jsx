@@ -12,6 +12,7 @@ if (typeof window !== 'undefined') {
   if (!window.$) window.$ = $;
   if (!window.jQuery) window.jQuery = jQuery;
 }
+//comment
 
 const NewItems = () => {
     const [items, setItems] = useState([]);

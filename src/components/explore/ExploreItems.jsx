@@ -8,6 +8,8 @@ const ExploreItems = ({nfts, loading}) => {
   const [visibleCount, setVisibleCount] = useState(8);
   const [filterType, setFilterType] = useState("");
 
+  //comment
+
   // Sort/filter the NFTs based on selected filter
   const filteredAndSortNfts = useMemo(()=>{
     let result =[...nfts];
