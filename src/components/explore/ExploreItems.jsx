@@ -65,7 +65,7 @@ const ExploreItems = ({ nfts, loading }) => {
       {!loading &&
         visibleNft.map((nft, index) => (
           <div
-            key={nft.authorId}
+            key={nft.nftId}
             className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
             style={{ display: "block", backgroundSize: "cover" }}
             data-aos="fade-up"
@@ -91,13 +91,13 @@ const ExploreItems = ({ nfts, loading }) => {
                     <button>Buy Now</button>
                     <div className="nft__item_share">
                       <h4>Share</h4>
-                      <a href="#" target="_blank" rel="noreferrer">
+                      <a href="" target="_blank" rel="noreferrer">
                         <i className="fa fa-facebook fa-lg"></i>
                       </a>
-                      <a href="#" target="_blank" rel="noreferrer">
+                      <a href="" target="_blank" rel="noreferrer">
                         <i className="fa fa-twitter fa-lg"></i>
                       </a>
-                      <a href="#">
+                      <a href="">
                         <i className="fa fa-envelope fa-lg"></i>
                       </a>
                     </div>
