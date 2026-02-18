@@ -8,7 +8,6 @@ const ExploreItems = ({nfts, loading}) => {
   const [visibleCount, setVisibleCount] = useState(8);
   const [filterType, setFilterType] = useState("");
 
-  //comment
 
   // Sort/filter the NFTs based on selected filter
   const filteredAndSortNfts = useMemo(()=>{
@@ -73,7 +72,7 @@ const ExploreItems = ({nfts, loading}) => {
           <div className="nft__item">
             <div className="author_list_pp">
               <Link
-                to="/author"
+                to={`/author/${nft.authorId}`}
                 data-bs-toggle="tooltip"
                 data-bs-placement="top"
               >
