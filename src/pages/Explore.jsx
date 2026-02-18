@@ -1,16 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useCallback } from "react";
 import axios from "axios";
-
 
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
-import HeaderExplore from "../components/explore/HeaderExplore";
 
 const Explore = () => {
   const [nfts, setNtfs] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
 
-  async function fetchData() {
+  const fetchData = useCallback(async () => {
     setIsLoading(true);
     const fetchAllAuthors =
       "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
@@ -22,19 +20,17 @@ const Explore = () => {
     } finally {
       setIsLoading(false);
     }
-  }
+  }, []);
 
   useEffect(() => {
     fetchData();
     window.scrollTo(0, 0);
-
-  }, []);
+  }, [fetchData]);
 
   return (
     <div id="wrapper">
       <div className="no-bottom no-top" id="content">
         <div id="top"></div>
-
         <section
           id="subheader"
           className="text-light"
@@ -51,7 +47,6 @@ const Explore = () => {
             </div>
           </div>
         </section>
-
         <section aria-label="section">
           <div className="container">
             <div className="row">

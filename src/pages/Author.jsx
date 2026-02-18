@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import React, { useEffect, useState, useCallback } from "react";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 
 import AuthorBanner from "../images/author_banner.jpg";
@@ -11,7 +11,7 @@ const Author = () => {
   const [isFollowing, setIsFollowing] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
-  async function fetchData() {
+  const fetchData = useCallback(async () => {
     setIsLoading(true);
     const fetchAuthor = `https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${id}`;
     try {
@@ -22,7 +22,7 @@ const Author = () => {
     } finally {
       setIsLoading(false);
     }
-  }
+  }, [id]);
 
   const handleFollow = () => {
     setIsFollowing((prev) => !prev);
@@ -35,8 +35,7 @@ const Author = () => {
   useEffect(() => {
     fetchData();
     window.scrollTo(0, 0);
-
-  }, [id]);
+  }, [fetchData]);
 
   return (
     <div id="wrapper">
@@ -60,43 +59,29 @@ const Author = () => {
                       {isLoading ? (
                         <div
                           className="skeleton-box"
-                          style={{
-                            width: "150px",
-                            height: "150px",
-                            borderRadius: "50%",
-                          }}
+                          style={{ width: "150px", height: "150px", borderRadius: "50%" }}
                         ></div>
                       ) : (
                         <img src={author?.authorImage} alt="" />
                       )}
-
                       <i className="fa fa-check"></i>
                       <div className="profile_name">
                         <h4>
                           {isLoading ? (
-                            <div
-                              className="skeleton-box"
-                              style={{ width: "200px" }}
-                            ></div>
+                            <div className="skeleton-box" style={{ width: "200px" }}></div>
                           ) : (
                             author?.authorName
                           )}
                           <span className="profile_username">
                             {isLoading ? (
-                              <div
-                                className="skeleton-box"
-                                style={{ width: "100px" }}
-                              ></div>
+                              <div className="skeleton-box" style={{ width: "100px" }}></div>
                             ) : (
                               author?.tag
                             )}
                           </span>
                           <span id="wallet" className="profile_wallet">
                             {isLoading ? (
-                              <div
-                                className="skeleton-box"
-                                style={{ width: "250px" }}
-                              ></div>
+                              <div className="skeleton-box" style={{ width: "250px" }}></div>
                             ) : (
                               author?.address
                             )}
@@ -112,15 +97,11 @@ const Author = () => {
                     <div className="de-flex-col">
                       <div className="profile_follower">
                         {isLoading ? (
-                          <div
-                            className="skeleton-box"
-                            style={{ width: "150px", height: "40px" }}
-                          ></div>
+                          <div className="skeleton-box" style={{ width: "150px", height: "40px" }}></div>
                         ) : (
                           `${author?.followers} followers`
                         )}
                       </div>
-
                       {!isLoading && (
                         <button onClick={handleFollow} className="btn-main">
                           {isFollowing ? "Unfollow" : "Follow"}
