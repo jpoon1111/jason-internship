@@ -2,9 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 
-
 import SubHeader from "../images/subheader.jpg";
 import ExploreItems from "../components/explore/ExploreItems";
+import HeaderExplore from "../components/explore/HeaderExplore";
 
 const Explore = () => {
   const [nfts, setNtfs] = useState([]);
@@ -12,24 +12,22 @@ const Explore = () => {
 
   async function fetchData() {
     setIsLoading(true);
-    
-    const fetchAllAuthors = "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore"
-
-    try{
-      const {data} = await axios.get(fetchAllAuthors);
+    const fetchAllAuthors =
+      "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
+    try {
+      const { data } = await axios.get(fetchAllAuthors);
       setNtfs(data);
-      console.log(data);
-    }
-    catch(error){
-      console.log('Error fetching', error);
-    }finally{
+    } catch (error) {
+      console.log("Error fetching", error);
+    } finally {
       setIsLoading(false);
     }
   }
 
   useEffect(() => {
-    fetchData()
+    fetchData();
     window.scrollTo(0, 0);
+
   }, []);
 
   return (
@@ -46,7 +44,7 @@ const Explore = () => {
             <div className="container">
               <div className="row">
                 <div className="col-md-12 text-center">
-                  <h1>Explore</h1>
+                  <h1 data-aos="fade-up">Explore</h1>
                 </div>
                 <div className="clearfix"></div>
               </div>
@@ -57,7 +55,7 @@ const Explore = () => {
         <section aria-label="section">
           <div className="container">
             <div className="row">
-              <ExploreItems nfts={nfts} loading={isLoading}/>
+              <ExploreItems nfts={nfts} loading={isLoading} />
             </div>
           </div>
         </section>
