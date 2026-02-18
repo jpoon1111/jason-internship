@@ -7,21 +7,16 @@ const ExploreItems = ({ nfts, loading }) => {
   const [filterType, setFilterType] = useState("");
 
   const filteredAndSortNfts = useMemo(() => {
-    let result = [...nfts];
     switch (filterType) {
       case "price_low_to_high":
-        result.sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
-        break;
+        return [...nfts].sort((a, b) => parseFloat(a.price) - parseFloat(b.price));
       case "price_high_to_low":
-        result.sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
-        break;
+        return [...nfts].sort((a, b) => parseFloat(b.price) - parseFloat(a.price));
       case "likes_high_to_low":
-        result.sort((a, z) => z.likes - a.likes);
-        break;
+        return [...nfts].sort((a, b) => b.likes - a.likes);
       default:
-        break;
+        return nfts;
     }
-    return result;
   }, [nfts, filterType]);
 
   const visibleNft = filteredAndSortNfts.slice(0, visibleCount);
