@@ -65,7 +65,7 @@ const options = {
       <div className="container">
         <div className="row">
           <div className="col-lg-12">
-            <div className="text-center">
+            <div className="text-center" data-aos="fade-up">
               <h2>Hot Collections</h2>
               <div className="small-border bg-color-2"></div>
             </div>
@@ -101,7 +101,9 @@ const options = {
             </OwlCarousel>
           ):
           // using   key={isLoading ? "loading" : "loaded"} will treat it as a component and will re-render
-            (<OwlCarousel className='owl-theme' {...options}  key={isLoading ? "loading" : "loaded"}>
+            (
+            <div data-aos="fade-up" data-aos-delay="100">
+            <OwlCarousel className='owl-theme' {...options}  key={isLoading ? "loading" : "loaded"}>
             
             {nfts.map((nft, index) => (
               <div className='item' key={nft.authorId}>
@@ -127,7 +129,9 @@ const options = {
               </div>
             ))}
 
-          </OwlCarousel>)
+          </OwlCarousel>
+          </div> 
+          )
         }
 
           
