@@ -28,26 +28,6 @@ const Explore = () => {
       setIsLoading(false);
     }
   }
-//comment
-//  async function fetchData() {
-//           setIsLoading(true);
-//           const fetchTopSellers = "https://us-central1-nft-cloud-functions.cloudfunctions.net/topSellers"
-//           try{
-//             const {data} = await axios.get(fetchTopSellers);
-//             setSellers(data);
-//             console.log(data);
-//           }
-//           catch(error){
-//             console.log('Error fetching', error);
-//           }finally{
-//             setIsLoading(false);
-//           }
-          
-//       }
-      
-//       useEffect(()=>{
-//         fetchData();
-//       }, [])
 
   useEffect(() => {
     fetchData()
