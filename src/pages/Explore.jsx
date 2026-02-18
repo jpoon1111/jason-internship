@@ -1,8 +1,6 @@
-import React, { useEffect, useState, useRef } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
-import $ from 'jquery';
-import jQuery from 'jquery';
+
 
 
 import SubHeader from "../images/subheader.jpg";
