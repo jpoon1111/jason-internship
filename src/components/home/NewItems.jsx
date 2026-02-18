@@ -16,8 +16,7 @@ if (typeof window !== 'undefined') {
 const NewItems = () => {
     const [items, setItems] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [countdowns, setCountdowns] = useState({});
-    const timerRefs = useRef({});
+
 
     const options = {
         items: 4,
@@ -55,71 +54,6 @@ const NewItems = () => {
       useEffect(()=>{
         fetchData();
       }, [])
-
-
-    // Format milliseconds to HH:MM:SS
-    const formatTime = (milliseconds) => {
-        if (milliseconds <= 0) return "00:00:00";
-        
-        const totalSeconds = Math.floor(milliseconds / 1000);
-        const hours = Math.floor(totalSeconds / 3600);
-        const minutes = Math.floor((totalSeconds % 3600) / 60);
-        const seconds = totalSeconds % 60;
-        
-        return `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
-    };
-
-    // Start countdown for a specific item
-    const startCountdown = (itemId, expiryDate) => {
-        if (timerRefs.current[itemId]) {
-            cancelAnimationFrame(timerRefs.current[itemId]);
-        }
-
-        const updateCountdown = () => {
-            const now = Date.now();
-            const timeLeft = expiryDate - now;
-            
-            if (timeLeft <= 0) {
-                setCountdowns(prev => ({
-                    ...prev,
-                    [itemId]: "00:00:000"
-                }));
-                cancelAnimationFrame(timerRefs.current[itemId]);
-                return;
-            }
-            
-            setCountdowns(prev => ({
-                ...prev,
-                [itemId]: formatTime(timeLeft)
-            }));
-            
-            timerRefs.current[itemId] = requestAnimationFrame(updateCountdown);
-        };
-        
-        timerRefs.current[itemId] = requestAnimationFrame(updateCountdown);
-    };
-
-    // Start countdowns when items are loaded
-    useEffect(() => {
-        if (items.length > 0) {
-            items.forEach(item => {
-                if (item.expiryDate && typeof item.expiryDate === 'number') {
-                    startCountdown(item.id || item.title, item.expiryDate);
-                }
-            });
-        }
-
-        // Cleanup function to cancel all animations
-        return () => {
-            Object.values(timerRefs.current).forEach(timerId => {
-                cancelAnimationFrame(timerId);
-            });
-        };
-    }, [items]);
-
-  
-
-
 
   return (
     <section id="section-items" className="no-bottom">
@@ -171,7 +105,7 @@ const NewItems = () => {
                         <div className="nft__item" key={item.authorId}>
                           <div className="author_list_pp">
                             <Link
-                              to="/author"
+                              to={`/author/${item.authorId}`}
                               data-bs-toggle="tooltip"
                               data-bs-placement="top"
                               title="Creator: Monica Lucas"
@@ -201,7 +135,7 @@ const NewItems = () => {
                               </div>
                             </div>
 
-                            <Link to="/item-details">
+                            <Link to={`/item-details/${item.nftId}`}>
                               <img
                                 src={item.nftImage}
                                 className="lazy nft__item_preview"
@@ -210,7 +144,7 @@ const NewItems = () => {
                             </Link>
                           </div>
                           <div className="nft__item_info">
-                            <Link to="/item-details">
+                            <Link to={`/item-details/${item.nftId}`}>
                               <h4>{item.title}</h4>
                             </Link>
                             <div className="nft__item_price">{item.price} ETH</div>

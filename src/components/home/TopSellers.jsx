@@ -1,24 +1,11 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import $ from 'jquery';
-import jQuery from 'jquery';
-import OwlCarousel from 'react-owl-carousel';
-import '../../css/styles/owl.carousel.css';
-import '../../css/styles/owl.theme.css';
-import '../../css/styles/owl.transitions.css';
-
-if (typeof window !== 'undefined') {
-  if (!window.$) window.$ = $;
-  if (!window.jQuery) window.jQuery = jQuery;
-}
 
 
 const TopSellers = () => {
     const [sellers, setSellers] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
-    const [countdowns, setCountdowns] = useState({});
-    const timerRefs = useRef({});
 
     const options = {
         items: 4,
