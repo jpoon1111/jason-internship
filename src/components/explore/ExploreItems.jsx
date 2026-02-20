@@ -19,6 +19,12 @@ const ExploreItems = ({ nfts, loading }) => {
     }
   }, [nfts, filterType]);
 
+  //TODO: 
+//   sorting using these api that auto sorts for me
+// https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=likes_high_to_low
+// https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=price_high_to_low
+// https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=price_low_to_high
+
   const visibleNft = filteredAndSortNfts.slice(0, visibleCount);
   const hasMore = visibleCount < filteredAndSortNfts.length;
 

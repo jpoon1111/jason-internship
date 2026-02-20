@@ -45,7 +45,7 @@ async function fetchData() {
               </div>
               <div className="col-md-6">
                 <div className="item_info">
-                  {isLoading ? <div className="skeleton-box" style={{ width: "300px", height: "40px" }}></div> : <h2>{nft?.title}</h2>}
+                  {isLoading ? <div className="skeleton-box" style={{ width: "300px", height: "40px" }}></div> : <h2>{nft?.title} #{nft?.tag}</h2>}
 
                   <div className="item_info_counts">
                       {isLoading ? (
